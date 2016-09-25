@@ -1,0 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+/**
+ *
+ * @author brand
+ */
+public class DAO {
+    SessionFactory sf = null;
+    Session session = null;
+    Transaction transaction = null;
+}
