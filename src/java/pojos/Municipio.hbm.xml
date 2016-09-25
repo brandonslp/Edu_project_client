@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2016 04:58:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Municipio" table="MUNICIPIO" catalog="Proyecto_edu" optimistic-lock="version">
+        <composite-id name="id" class="pojos.MunicipioId">
+            <key-property name="munId" type="int">
+                <column name="MUN_ID" />
+            </key-property>
+            <key-property name="depId" type="int">
+                <column name="DEP_ID" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="departamento" class="pojos.Departamento" update="false" insert="false" fetch="select">
+            <column name="DEP_ID" not-null="true" />
+        </many-to-one>
+        <property name="munNombre" type="string">
+            <column name="MUN_NOMBRE" length="50" not-null="true" />
+        </property>
+        <set name="institucionesEdus" table="INSTITUCIONES_EDU" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MUN_ID" not-null="true" />
+                <column name="DEP_ID" not-null="true" />
+            </key>
+            <one-to-many class="pojos.InstitucionesEdu" />
+        </set>
+        <set name="secretariaEducs" table="SECRETARIA_EDUC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MUN_ID" not-null="true" />
+                <column name="DEP_ID" not-null="true" />
+            </key>
+            <one-to-many class="pojos.SecretariaEduc" />
+        </set>
+    </class>
+</hibernate-mapping>

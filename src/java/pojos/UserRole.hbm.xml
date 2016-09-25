@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2016 04:58:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.UserRole" table="USER_ROLE" catalog="Proyecto_edu" optimistic-lock="version">
+        <composite-id name="id" class="pojos.UserRoleId">
+            <key-property name="roleId" type="int">
+                <column name="ROLE_ID" />
+            </key-property>
+            <key-property name="usrId" type="string">
+                <column name="USR_ID" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="usuarios" class="pojos.Usuarios" update="false" insert="false" fetch="select">
+            <column name="USR_ID" length="20" not-null="true" />
+        </many-to-one>
+        <property name="roleCreated" type="timestamp">
+            <column name="ROLE_CREATED" length="0" />
+        </property>
+        <property name="roleUpdate" type="timestamp">
+            <column name="ROLE_UPDATE" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

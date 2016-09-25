@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2016 04:58:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Estudiante" table="ESTUDIANTE" catalog="Proyecto_edu" optimistic-lock="version">
+        <composite-id name="id" class="pojos.EstudianteId">
+            <key-property name="estCod" type="string">
+                <column name="EST_COD" length="20" />
+            </key-property>
+            <key-property name="curCod" type="int">
+                <column name="CUR_COD" />
+            </key-property>
+            <key-property name="insDcodigo" type="int">
+                <column name="INS_DCODIGO" />
+            </key-property>
+            <key-property name="munId" type="int">
+                <column name="MUN_ID" />
+            </key-property>
+            <key-property name="depId" type="int">
+                <column name="DEP_ID" />
+            </key-property>
+            <key-property name="docDirgrupo" type="string">
+                <column name="DOC_DIRGRUPO" length="20" />
+            </key-property>
+            <key-property name="secCodigo" type="int">
+                <column name="SEC_CODIGO" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="curso" class="pojos.Curso" update="false" insert="false" fetch="select">
+            <column name="CUR_COD" not-null="true" />
+            <column name="DOC_DIRGRUPO" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="estMadre" class="pojos.EstMadre" fetch="select">
+            <column name="EST_MADRE_COD" length="20" />
+        </many-to-one>
+        <many-to-one name="estPadre" class="pojos.EstPadre" fetch="select">
+            <column name="EST_PADRE_COD" length="20" />
+        </many-to-one>
+        <many-to-one name="institucionesEdu" class="pojos.InstitucionesEdu" update="false" insert="false" fetch="select">
+            <column name="INS_DCODIGO" not-null="true" />
+            <column name="MUN_ID" not-null="true" />
+            <column name="DEP_ID" not-null="true" />
+            <column name="SEC_CODIGO" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarios" class="pojos.Usuarios" update="false" insert="false" fetch="select">
+            <column name="EST_COD" length="20" not-null="true" />
+        </many-to-one>
+        <property name="estado" type="string">
+            <column name="ESTADO" length="20" />
+        </property>
+        <property name="estNombre" type="string">
+            <column name="EST_NOMBRE" length="100" not-null="true" />
+        </property>
+        <property name="estLugarExpdoc" type="string">
+            <column name="EST_LUGAR_EXPDOC" length="40" not-null="true" />
+        </property>
+        <property name="estSexo" type="string">
+            <column name="EST_SEXO" length="2" not-null="true" />
+        </property>
+        <property name="estTelefono" type="string">
+            <column name="EST_TELEFONO" length="40" not-null="true" />
+        </property>
+        <property name="estDireccion" type="string">
+            <column name="EST_DIRECCION" length="60" not-null="true" />
+        </property>
+        <property name="estEmail" type="string">
+            <column name="EST_EMAIL" length="80" not-null="true" />
+        </property>
+        <property name="estFecnac" type="date">
+            <column name="EST_FECNAC" length="0" not-null="true" />
+        </property>
+        <property name="estLugarnac" type="string">
+            <column name="EST_LUGARNAC" length="40" not-null="true" />
+        </property>
+        <property name="estEstadocivil" type="string">
+            <column name="EST_ESTADOCIVIL" length="8" not-null="true" />
+        </property>
+        <property name="estSisben" type="string">
+            <column name="EST_SISBEN" length="5" not-null="true" />
+        </property>
+        <property name="estDesplazado" type="string">
+            <column name="EST_DESPLAZADO" length="5" not-null="true" />
+        </property>
+        <property name="estEstratosoc" type="int">
+            <column name="EST_ESTRATOSOC" not-null="true" />
+        </property>
+        <set name="notas" table="NOTA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EST_COD" length="20" not-null="true" />
+                <column name="CUR_COD" not-null="true" />
+                <column name="INS_DCODIGO" not-null="true" />
+                <column name="MUN_ID" not-null="true" />
+                <column name="DEP_ID" not-null="true" />
+                <column name="DOC_DIRGRUPO" length="20" not-null="true" />
+                <column name="SEC_CODIGO" not-null="true" />
+            </key>
+            <one-to-many class="pojos.Nota" />
+        </set>
+        <set name="asistencias" table="ASISTENCIA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EST_COD" length="20" not-null="true" />
+                <column name="CUR_COD" not-null="true" />
+                <column name="INS_DCODIGO" not-null="true" />
+                <column name="MUN_ID" not-null="true" />
+                <column name="DEP_ID" not-null="true" />
+                <column name="DOC_DIRGRUPO" length="20" not-null="true" />
+                <column name="SEC_CODIGO" not-null="true" />
+            </key>
+            <one-to-many class="pojos.Asistencia" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2016 04:58:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Indicadores" table="INDICADORES" catalog="Proyecto_edu" optimistic-lock="version">
+        <composite-id name="id" class="pojos.IndicadoresId">
+            <key-property name="indCodigo" type="int">
+                <column name="IND_CODIGO" />
+            </key-property>
+            <key-property name="asiCod" type="int">
+                <column name="ASI_COD" />
+            </key-property>
+            <key-property name="docCod" type="string">
+                <column name="DOC_COD" length="20" />
+            </key-property>
+            <key-property name="insDcodigo" type="int">
+                <column name="INS_DCODIGO" />
+            </key-property>
+            <key-property name="munId" type="int">
+                <column name="MUN_ID" />
+            </key-property>
+            <key-property name="depId" type="int">
+                <column name="DEP_ID" />
+            </key-property>
+            <key-property name="secCodigo" type="int">
+                <column name="SEC_CODIGO" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="asignatura" class="pojos.Asignatura" update="false" insert="false" fetch="select">
+            <column name="ASI_COD" not-null="true" />
+            <column name="DOC_COD" length="20" not-null="true" />
+            <column name="INS_DCODIGO" not-null="true" />
+            <column name="MUN_ID" not-null="true" />
+            <column name="DEP_ID" not-null="true" />
+            <column name="SEC_CODIGO" not-null="true" />
+        </many-to-one>
+        <property name="indNombre" type="string">
+            <column name="IND_NOMBRE" length="20" not-null="true" />
+        </property>
+        <property name="indPeriodo" type="int">
+            <column name="IND_PERIODO" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

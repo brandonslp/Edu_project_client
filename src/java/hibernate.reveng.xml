@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="Proyecto_edu"/>
+  <table-filter match-name="INSTITUCIONES_EDU"/>
+  <table-filter match-name="EST_MADRE"/>
+  <table-filter match-name="INDICADORES"/>
+  <table-filter match-name="USUARIOS"/>
+  <table-filter match-name="SECRETARIA_EDUC"/>
+  <table-filter match-name="CURSO_ASIGNATURA"/>
+  <table-filter match-name="ADMINISTRATIVO"/>
+  <table-filter match-name="ASISTENCIA"/>
+  <table-filter match-name="EST_PADRE"/>
+  <table-filter match-name="DOCENTE"/>
+  <table-filter match-name="CURSO"/>
+  <table-filter match-name="DEPARTAMENTO"/>
+  <table-filter match-name="NOTA"/>
+  <table-filter match-name="MUNICIPIO"/>
+  <table-filter match-name="USER_ROLE"/>
+  <table-filter match-name="ASIGNATURA"/>
+  <table-filter match-name="ESTUDIANTE"/>
+</hibernate-reverse-engineering>

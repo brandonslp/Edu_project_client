@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2016 04:58:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.EstMadre" table="EST_MADRE" catalog="Proyecto_edu" optimistic-lock="version">
+        <id name="estMadreCod" type="string">
+            <column name="EST_MADRE_COD" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="estMadreNombre" type="string">
+            <column name="EST_MADRE_NOMBRE" length="100" not-null="true" />
+        </property>
+        <property name="estMadreLugarExpdoc" type="string">
+            <column name="EST_MADRE_LUGAR_EXPDOC" length="40" not-null="true" />
+        </property>
+        <property name="estMadreSexo" type="string">
+            <column name="EST_MADRE_SEXO" length="2" not-null="true" />
+        </property>
+        <property name="estMadreTelefono" type="string">
+            <column name="EST_MADRE_TELEFONO" length="40" not-null="true" />
+        </property>
+        <property name="estMadreDireccion" type="string">
+            <column name="EST_MADRE_DIRECCION" length="60" not-null="true" />
+        </property>
+        <property name="estMadreEmail" type="string">
+            <column name="EST_MADRE_EMAIL" length="80" not-null="true" />
+        </property>
+        <property name="estMadreFecnac" type="date">
+            <column name="EST_MADRE_FECNAC" length="0" not-null="true" />
+        </property>
+        <property name="estMadreLugarnac" type="string">
+            <column name="EST_MADRE_LUGARNAC" length="40" not-null="true" />
+        </property>
+        <property name="estMadreNivelsisben" type="int">
+            <column name="EST_MADRE_NIVELSISBEN" not-null="true" />
+        </property>
+        <set name="estudiantes" table="ESTUDIANTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EST_MADRE_COD" length="20" />
+            </key>
+            <one-to-many class="pojos.Estudiante" />
+        </set>
+    </class>
+</hibernate-mapping>

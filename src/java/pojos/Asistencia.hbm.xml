@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2016 04:58:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Asistencia" table="ASISTENCIA" catalog="Proyecto_edu" optimistic-lock="version">
+        <composite-id name="id" class="pojos.AsistenciaId">
+            <key-property name="asisCodigo" type="string">
+                <column name="ASIS_CODIGO" length="10" />
+            </key-property>
+            <key-property name="docCod" type="string">
+                <column name="DOC_COD" length="20" />
+            </key-property>
+            <key-property name="insDcodigo" type="int">
+                <column name="INS_DCODIGO" />
+            </key-property>
+            <key-property name="munId" type="int">
+                <column name="MUN_ID" />
+            </key-property>
+            <key-property name="depId" type="int">
+                <column name="DEP_ID" />
+            </key-property>
+            <key-property name="secCodigo" type="int">
+                <column name="SEC_CODIGO" />
+            </key-property>
+            <key-property name="asiCod" type="int">
+                <column name="ASI_COD" />
+            </key-property>
+            <key-property name="estCod" type="string">
+                <column name="EST_COD" length="20" />
+            </key-property>
+            <key-property name="curCod" type="int">
+                <column name="CUR_COD" />
+            </key-property>
+            <key-property name="docDirgrupo" type="string">
+                <column name="DOC_DIRGRUPO" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="asignatura" class="pojos.Asignatura" update="false" insert="false" fetch="select">
+            <column name="ASI_COD" not-null="true" />
+            <column name="DOC_COD" length="20" not-null="true" />
+            <column name="INS_DCODIGO" not-null="true" />
+            <column name="MUN_ID" not-null="true" />
+            <column name="DEP_ID" not-null="true" />
+            <column name="SEC_CODIGO" not-null="true" />
+        </many-to-one>
+        <many-to-one name="docente" class="pojos.Docente" update="false" insert="false" fetch="select">
+            <column name="DOC_COD" length="20" not-null="true" />
+            <column name="INS_DCODIGO" not-null="true" />
+            <column name="MUN_ID" not-null="true" />
+            <column name="DEP_ID" not-null="true" />
+            <column name="SEC_CODIGO" not-null="true" />
+        </many-to-one>
+        <many-to-one name="estudiante" class="pojos.Estudiante" update="false" insert="false" fetch="select">
+            <column name="EST_COD" length="20" not-null="true" />
+            <column name="CUR_COD" not-null="true" />
+            <column name="INS_DCODIGO" not-null="true" />
+            <column name="MUN_ID" not-null="true" />
+            <column name="DEP_ID" not-null="true" />
+            <column name="DOC_DIRGRUPO" length="20" not-null="true" />
+            <column name="SEC_CODIGO" not-null="true" />
+        </many-to-one>
+        <property name="asisAsistencia" type="int">
+            <column name="ASIS_ASISTENCIA" not-null="true" />
+        </property>
+        <property name="asisFecha" type="date">
+            <column name="ASIS_FECHA" length="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

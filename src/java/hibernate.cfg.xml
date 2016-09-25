@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://104.131.63.34:3306/Proyecto_edu?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">Proyecto_edu</property>
+    <property name="hibernate.connection.password">ESgeluEsCH</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="pojos/Municipio.hbm.xml"/>
+    <mapping resource="pojos/InstitucionesEdu.hbm.xml"/>
+    <mapping resource="pojos/Curso.hbm.xml"/>
+    <mapping resource="pojos/Estudiante.hbm.xml"/>
+    <mapping resource="pojos/UserRole.hbm.xml"/>
+    <mapping resource="pojos/Usuarios.hbm.xml"/>
+    <mapping resource="pojos/Departamento.hbm.xml"/>
+    <mapping resource="pojos/EstPadre.hbm.xml"/>
+    <mapping resource="pojos/Asistencia.hbm.xml"/>
+    <mapping resource="pojos/Administrativo.hbm.xml"/>
+    <mapping resource="pojos/EstMadre.hbm.xml"/>
+    <mapping resource="pojos/SecretariaEduc.hbm.xml"/>
+    <mapping resource="pojos/Docente.hbm.xml"/>
+    <mapping resource="pojos/Asignatura.hbm.xml"/>
+    <mapping resource="pojos/Indicadores.hbm.xml"/>
+    <mapping resource="pojos/Nota.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
