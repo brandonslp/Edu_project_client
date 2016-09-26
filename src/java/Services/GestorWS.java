@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,7 +13,9 @@ import com.google.gson.JsonObject;
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import pojos.Departamento;
+import pojos.Municipio;
 
 /**
  *
@@ -40,5 +43,23 @@ public class GestorWS {
         
         return new Gson().toJson(deparments);
     }
+    
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getMunipsById")
+    public String getMunipsById(@WebParam(name = "idDept") int idDept) {
+        LocaleDAO ldao = new LocaleDAO();
+        List<Municipio> listM = ldao.getMunipsById(idDept);
+        //String str = new Gson().toJson(listM);
+        JsonArray municipios = new JsonArray();
+        JsonObject  municipio;
+        for (Municipio m : listM) {
+            municipio = new JsonObject();
+            municipio.addProperty("mun_id", m.getId().getMunId());
+            municipio.addProperty("mun_nombre", m.getMunNombre());
+            municipios.add(municipio);
+        }
+        return new Gson().toJson(municipios);
+    }
 }
-

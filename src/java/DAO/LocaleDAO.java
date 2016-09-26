@@ -22,6 +22,8 @@ import pojos.Municipio;
 public class LocaleDAO extends DAO{
     
     
+    //lista de departamentos
+    
     public List<Departamento> getAllDeparment(){
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session session = sf.openSession();
@@ -42,6 +44,7 @@ public class LocaleDAO extends DAO{
         List<Municipio> listD = query.list();
         return listD;
     }
+    
     
     
 }
