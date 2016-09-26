@@ -59,7 +59,7 @@
             </key>
             <one-to-many class="pojos.Indicadores" />
         </set>
-        <set name="cursos" table="CURSO_ASIGNATURA" inverse="true" lazy="true" fetch="select">
+        <!--<set name="cursos" table="CURSO_ASIGNATURA" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="ASI_COD" not-null="true" />
                 <column name="DOC_COD" length="20" not-null="true" />
@@ -71,7 +71,7 @@
             <many-to-many entity-name="pojos.Curso">
                 <column name="CUR_COD" not-null="true" />
             </many-to-many>
-        </set>
+        </set>-->
         <set name="notas" table="NOTA" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="ASI_COD" not-null="true" />

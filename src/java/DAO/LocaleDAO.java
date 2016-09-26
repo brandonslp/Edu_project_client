@@ -5,9 +5,10 @@
  */
 package DAO;
 
-import com.google.gson.Gson;
 import java.util.List;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import pojos.Departamento;
 
 /**
@@ -18,19 +19,15 @@ import pojos.Departamento;
     Controlador de Departamentos y municipios
 */
 public class LocaleDAO extends DAO{
-
-    public LocaleDAO() {
-        super();
-    }
     
     
-    public String getAllDepartments(){
-        sf=HibernateUtil.getSessionFactory();
-        session = sf.openSession();
-        Query query = session.createQuery("from Departamento");
+    public List<Departamento> getAllDeparment(){
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session session = sf.openSession();
+        Query  query = session.createQuery("from Departamento");
         List<Departamento> listD = query.list();
-        session.close();
-        return new Gson().toJson(listD);
+        return listD;
+    
     }
     
 }
