@@ -6,7 +6,6 @@
 package DAO;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,13 +23,18 @@ public class ValidatorDAO {
         Session session = sf.openSession();
         SQLQuery sQLQuery = session.createSQLQuery(sqlGeneratorLogin(user, pass));
         sQLQuery.addEntity(Usuarios.class);
+        sQLQuery.setString("user_id", user);
+        sQLQuery.setString("pass", pass);
         Usuarios u = (Usuarios) sQLQuery.uniqueResult();
-        return u.getUsrToken(); 
+        if (u!=null) {
+            return u.getUsrToken(); 
+        }
+        return "Error"; 
     }
     
     
     private String sqlGeneratorLogin(String user_id, String pass){
-        String sql="select * from USUARIOS where USR_ID = "+user_id+" and USR_PASSWORD = '"+ pass+"'";
+        String sql="select * from USUARIOS where USR_ID = :user_id and USR_PASSWORD = :pass";
         return sql;
     }
     
@@ -38,7 +42,10 @@ public class ValidatorDAO {
     public boolean DocentePermission(String token){
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session session = sf.openSession();
-        SQLQuery sQLQuery = session.createSQLQuery("select * from USUARIOS, DOCENTE where usr_token = '"+token+"' and usr_id = doc_cod");
+        //SQLQuery sQLQuery = session.createSQLQuery("select * from USUARIOS, DOCENTE where usr_token = '"+token+"' and usr_id = doc_cod");
+        SQLQuery sQLQuery = session.createSQLQuery("select * from USUARIOS, DOCENTE where usr_token = :token and usr_id = doc_cod");
+        sQLQuery.addEntity(Usuarios.class);
+        sQLQuery.setString("token", token);
         if (!sQLQuery.list().isEmpty()) {
             return true;
         }else return false;
