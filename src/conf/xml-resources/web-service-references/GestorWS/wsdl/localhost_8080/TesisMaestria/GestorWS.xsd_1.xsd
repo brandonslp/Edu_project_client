@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://Services/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://Services/">
+
+<xs:element name="getAllAsistanceByAsignature" type="tns:getAllAsistanceByAsignature"/>
+
+<xs:element name="getAllAsistanceByAsignatureResponse" type="tns:getAllAsistanceByAsignatureResponse"/>
+
+<xs:element name="getAllDepartments" type="tns:getAllDepartments"/>
+
+<xs:element name="getAllDepartmentsResponse" type="tns:getAllDepartmentsResponse"/>
+
+<xs:element name="getMunipsById" type="tns:getMunipsById"/>
+
+<xs:element name="getMunipsByIdResponse" type="tns:getMunipsByIdResponse"/>
+
+<xs:element name="loginUser" type="tns:loginUser"/>
+
+<xs:element name="loginUserResponse" type="tns:loginUserResponse"/>
+
+<xs:complexType name="getAllDepartments">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getAllDepartmentsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllAsistanceByAsignature">
+<xs:sequence>
+<xs:element name="DOC_COD" type="xs:string" minOccurs="0"/>
+<xs:element name="ASI_COD" type="xs:int"/>
+<xs:element name="token" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllAsistanceByAsignatureResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loginUser">
+<xs:sequence>
+<xs:element name="User" type="xs:string" minOccurs="0"/>
+<xs:element name="Pass" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loginUserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMunipsById">
+<xs:sequence>
+<xs:element name="idDept" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMunipsByIdResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
