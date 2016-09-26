@@ -8,6 +8,7 @@ package Services;
 
 import DAO.AsistenciaDAO;
 import DAO.LocaleDAO;
+import DAO.ValidatorDAO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -70,8 +71,20 @@ public class GestorWS {
      * Web service operation
      */
     @WebMethod(operationName = "getAllAsistanceByAsignature")
-    public String getAllAsistanceByAsignature(@WebParam(name = "DOC_COD") String DOC_COD, @WebParam(name = "INS_DCODIGO") int INS_DCODIGO, @WebParam(name = "MUN_ID") int MUN_ID, @WebParam(name = "DEP_ID") int DEP_ID, @WebParam(name = "SEC_CODIGO") int SEC_CODIGO, @WebParam(name = "ASI_COD") int ASI_COD, @WebParam(name = "CUR_COD") int CUR_COD) {
+    public String getAllAsistanceByAsignature(@WebParam(name = "DOC_COD") String DOC_COD, @WebParam(name = "ASI_COD") int ASI_COD, @WebParam(name = "token") String token) {
         //TODO write your implementation code here:
+        ValidatorDAO vdao = new ValidatorDAO();
+        if (vdao.DocentePermission(token)) {
+            return getAsitancebyAsignature(DOC_COD, ASI_COD);
+        }else{
+            JsonObject jo = new JsonObject();
+            jo.addProperty("error", "El usuario no tiene permisos de ejecutar esta funcion");
+            return new Gson().toJson(jo);
+        }
+        
+    }
+
+    private String getAsitancebyAsignature(String DOC_COD, int ASI_COD){
         AsistenciaDAO adao = new AsistenciaDAO();
         //List<Asistencia> listA = adao.getAllAsistanceByAsignature(DOC_COD, INS_DCODIGO, MUN_ID, DEP_ID, SEC_CODIGO, ASI_COD, CUR_COD);
         List<Asistencia> listA = adao.getAllAsistanceByAsignature(DOC_COD,ASI_COD);
@@ -84,7 +97,7 @@ public class GestorWS {
             asistencia.addProperty("Est_cod", a.getEstudiante().getId().getEstCod());
             asistencia.addProperty("asistencia", a.getAsisAsistencia());
             asistencias.add(asistencia);
-            }
+            } 
         }else{
             asistencia = new JsonObject();
             asistencia.addProperty("Error", "No hay asistencias registradas");
@@ -92,5 +105,29 @@ public class GestorWS {
         }
         
         return new Gson().toJson(asistencias);
+    
+    }
+    
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "loginUser")
+    public String loginUser(@WebParam(name = "User") String User, @WebParam(name = "Pass") String Pass) {
+        //TODO write your implementation code here:
+        ValidatorDAO vdao = new ValidatorDAO();
+        String token = vdao.validate(User, Pass);
+        JsonObject jtoken = new JsonObject();
+        jtoken.addProperty("token", token);
+        return new Gson().toJson(jtoken);
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "validateDocente")
+    public String validateDocente(@WebParam(name = "token") String token) {
+        //TODO write your implementation code here:
+        ValidatorDAO vdao = new ValidatorDAO();
+        return  String.valueOf(vdao.DocentePermission(token));
     }
 }
