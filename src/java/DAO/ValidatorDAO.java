@@ -21,7 +21,7 @@ public class ValidatorDAO {
         pass=DigestUtils.sha512Hex(pass);
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session session = sf.openSession();
-        SQLQuery sQLQuery = session.createSQLQuery(sqlGeneratorLogin(user, pass));
+        SQLQuery sQLQuery = session.createSQLQuery(sqlGeneratorLogin());
         sQLQuery.addEntity(Usuarios.class);
         sQLQuery.setString("user_id", user);
         sQLQuery.setString("pass", pass);
@@ -33,7 +33,7 @@ public class ValidatorDAO {
     }
     
     
-    private String sqlGeneratorLogin(String user_id, String pass){
+    private String sqlGeneratorLogin(){
         String sql="select * from USUARIOS where USR_ID = :user_id and USR_PASSWORD = :pass";
         return sql;
     }
