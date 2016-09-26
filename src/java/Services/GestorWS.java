@@ -7,7 +7,12 @@ package Services;
 
 import DAO.LocaleDAO;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import java.math.BigDecimal;
 import java.util.List;
+import javax.json.Json;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import pojos.Departamento;
@@ -27,11 +32,16 @@ public class GestorWS {
         //TODO write your implementation code here:
         LocaleDAO ldao = new LocaleDAO();
         List<Departamento> listD = ldao.getAllDeparment();
-        String str= new Gson().toJson(listD);
-        /*String str="";
-        for (Departamento departamento : listD) {
-            str+=departamento.getDepNombre()+"\n";
-        }*/
-        return str;
+        JsonArray deparments = new JsonArray();
+        JsonObject  deparment;
+        for (Departamento d : listD) {
+            deparment = new JsonObject();
+            deparment.addProperty("dep_Id", d.getDepId());
+            deparment.addProperty("dep_Nombre", d.getDepNombre());
+            deparments.add(deparment);
+        }
+        
+        return new Gson().toJson(deparments);
     }
 }
+
