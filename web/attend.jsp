@@ -22,6 +22,7 @@
       <%
           HttpSession misession= (HttpSession) request.getSession();
           String token = (String) misession.getAttribute("token");
+          //out.print(token);
           if(token.equalsIgnoreCase("error") || token.equalsIgnoreCase("") || token==null){
                 response.sendRedirect("index.jsp");
           }
@@ -59,18 +60,20 @@
     </thead>
     <tbody>
         <%  
-            String fecha="", cod="", asis="", row="";
-            if(asistencias!=null && !asistencias.isJsonNull()){
-                for(int i=0; i<asistencias.size();i++){
-                      fecha = asistencias.get(i).getAsJsonObject().get("Fecha").getAsString();
-                      cod = asistencias.get(i).getAsJsonObject().get("Est_cod").getAsString();
-                      asis = asistencias.get(i).getAsJsonObject().get("asistencia").getAsString();
-                      if(asis.equalsIgnoreCase("1")) asis="Si";
-                      else asis="No";
-                      row="<tr><td>"+fecha+"</td><td>"+cod+"</td><td>"+asis+"</td></tr>";
-                      out.print(row);
+                String fecha="", cod="", asis="", row="";
+                if(asistencias!=null && !asistencias.isJsonNull()){
+                    for(int i=0; i<asistencias.size();i++){
+
+                          fecha = asistencias.get(i).getAsJsonObject().get("Fecha").getAsString();
+                          cod = asistencias.get(i).getAsJsonObject().get("Est_cod").getAsString();
+                          asis = asistencias.get(i).getAsJsonObject().get("asistencia").getAsString();
+                          if(asis.equalsIgnoreCase("1")) asis="Si";
+                          else asis="No";
+                          row="<tr><td>"+fecha+"</td><td>"+cod+"</td><td>"+asis+"</td></tr>";
+                          out.print(row);
+
+                    };
                 };
-            };
         %>
       
     </tbody>

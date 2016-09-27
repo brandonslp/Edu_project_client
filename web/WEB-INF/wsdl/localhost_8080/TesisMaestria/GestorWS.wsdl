@@ -4,23 +4,11 @@
 <xsd:import namespace="http://Services/" schemaLocation="http://localhost:8080/TesisMaestria/GestorWS?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="loginUser">
-<part name="parameters" element="tns:loginUser"/>
-</message>
-<message name="loginUserResponse">
-<part name="parameters" element="tns:loginUserResponse"/>
-</message>
 <message name="getAllDepartments">
 <part name="parameters" element="tns:getAllDepartments"/>
 </message>
 <message name="getAllDepartmentsResponse">
 <part name="parameters" element="tns:getAllDepartmentsResponse"/>
-</message>
-<message name="getMunipsById">
-<part name="parameters" element="tns:getMunipsById"/>
-</message>
-<message name="getMunipsByIdResponse">
-<part name="parameters" element="tns:getMunipsByIdResponse"/>
 </message>
 <message name="getAllAsistanceByAsignature">
 <part name="parameters" element="tns:getAllAsistanceByAsignature"/>
@@ -28,27 +16,49 @@
 <message name="getAllAsistanceByAsignatureResponse">
 <part name="parameters" element="tns:getAllAsistanceByAsignatureResponse"/>
 </message>
+<message name="getMunipsById">
+<part name="parameters" element="tns:getMunipsById"/>
+</message>
+<message name="getMunipsByIdResponse">
+<part name="parameters" element="tns:getMunipsByIdResponse"/>
+</message>
+<message name="loginUser">
+<part name="parameters" element="tns:loginUser"/>
+</message>
+<message name="loginUserResponse">
+<part name="parameters" element="tns:loginUserResponse"/>
+</message>
+<message name="validateDocente">
+<part name="parameters" element="tns:validateDocente"/>
+</message>
+<message name="validateDocenteResponse">
+<part name="parameters" element="tns:validateDocenteResponse"/>
+</message>
 <portType name="GestorWS">
-<operation name="loginUser">
-<input wsam:Action="http://Services/GestorWS/loginUserRequest" message="tns:loginUser"/>
-<output wsam:Action="http://Services/GestorWS/loginUserResponse" message="tns:loginUserResponse"/>
-</operation>
 <operation name="getAllDepartments">
 <input wsam:Action="http://Services/GestorWS/getAllDepartmentsRequest" message="tns:getAllDepartments"/>
 <output wsam:Action="http://Services/GestorWS/getAllDepartmentsResponse" message="tns:getAllDepartmentsResponse"/>
-</operation>
-<operation name="getMunipsById">
-<input wsam:Action="http://Services/GestorWS/getMunipsByIdRequest" message="tns:getMunipsById"/>
-<output wsam:Action="http://Services/GestorWS/getMunipsByIdResponse" message="tns:getMunipsByIdResponse"/>
 </operation>
 <operation name="getAllAsistanceByAsignature">
 <input wsam:Action="http://Services/GestorWS/getAllAsistanceByAsignatureRequest" message="tns:getAllAsistanceByAsignature"/>
 <output wsam:Action="http://Services/GestorWS/getAllAsistanceByAsignatureResponse" message="tns:getAllAsistanceByAsignatureResponse"/>
 </operation>
+<operation name="getMunipsById">
+<input wsam:Action="http://Services/GestorWS/getMunipsByIdRequest" message="tns:getMunipsById"/>
+<output wsam:Action="http://Services/GestorWS/getMunipsByIdResponse" message="tns:getMunipsByIdResponse"/>
+</operation>
+<operation name="loginUser">
+<input wsam:Action="http://Services/GestorWS/loginUserRequest" message="tns:loginUser"/>
+<output wsam:Action="http://Services/GestorWS/loginUserResponse" message="tns:loginUserResponse"/>
+</operation>
+<operation name="validateDocente">
+<input wsam:Action="http://Services/GestorWS/validateDocenteRequest" message="tns:validateDocente"/>
+<output wsam:Action="http://Services/GestorWS/validateDocenteResponse" message="tns:validateDocenteResponse"/>
+</operation>
 </portType>
 <binding name="GestorWSPortBinding" type="tns:GestorWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="loginUser">
+<operation name="getAllDepartments">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -57,7 +67,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getAllDepartments">
+<operation name="getAllAsistanceByAsignature">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -75,7 +85,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getAllAsistanceByAsignature">
+<operation name="loginUser">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="validateDocente">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

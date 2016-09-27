@@ -19,15 +19,15 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" action="index.jsp">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
+    <form class="form-signin" action="index.jsp" method="POST">
+        <h2 class="form-signin-heading">Login</h2>
+        <label for="inputEmail" class="sr-only">Usuario</label>
         <input type="text" name="id" id="inputEmail" class="form-control" placeholder="User" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="pass"id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="remember-me"> Recordar
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
@@ -49,10 +49,12 @@
         //out.print(new Gson().toJson(jo));
         //out.print(jo.get("token"));
         String token = jo.get("token").getAsString();
-        if(!token.equalsIgnoreCase("error")){
+        if(!token.equalsIgnoreCase("error") && port.validateDocente(token)!=null){
             HttpSession sessionme= request.getSession(true);
             sessionme.setAttribute("token", jo.get("token").getAsString());
             response.sendRedirect("attend.jsp");
+        }else{
+            out.print("<script type=\"text/javascript\"> alert('Usuario no registrado'); </script>");
         }
         
     } catch (Exception ex) {

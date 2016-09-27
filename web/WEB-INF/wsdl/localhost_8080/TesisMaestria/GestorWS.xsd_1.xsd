@@ -16,11 +16,27 @@
 
 <xs:element name="loginUserResponse" type="tns:loginUserResponse"/>
 
+<xs:element name="validateDocente" type="tns:validateDocente"/>
+
+<xs:element name="validateDocenteResponse" type="tns:validateDocenteResponse"/>
+
 <xs:complexType name="getAllDepartments">
 <xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="getAllDepartmentsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="validateDocente">
+<xs:sequence>
+<xs:element name="token" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="validateDocenteResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
